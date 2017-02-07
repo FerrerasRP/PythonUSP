@@ -1,0 +1,9 @@
+a = int(input("Digite un número inteiro:"))
+
+resto = a%5
+
+if resto == 0:
+    print("Buzz")
+else:
+    print(a)
+    

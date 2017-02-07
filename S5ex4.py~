@@ -1,0 +1,12 @@
+def maximo(a, b, c):
+    if (a > b) and (a > c):
+        print(a)
+    else:
+        if (b > a) and (b > c):
+            print(b)
+        else:
+            print(c)
+
+def teste():
+    assert maximo(30,14,10) == 30
+    assert maximo(0,-1,1) == 1

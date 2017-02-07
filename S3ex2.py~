@@ -1,0 +1,9 @@
+a = float(input("Digite un número:"))
+
+resto = a%2
+
+if resto == 0:
+    print("par")
+else:
+    print("impar")
+    
