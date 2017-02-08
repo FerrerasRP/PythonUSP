@@ -1,35 +1,35 @@
 def computador_escolhe_jogada(n, m):
-    if (n==1):
-        tirar = 1
+    if n <= m:
+        return n
     else:
-        fator = m + 1
-        if (n%fator)==0:
-            tirar = n-fator
+        if n % (m+1) == 0:
+            return m
         else:
-            tirar = n-1
-
-        if tirar > limitepecas:
-            tirar = limitepecas
-    
-    print("O computador tirou "+str(tirar)+" peca(s)")
-    return tirar
-
+            i = 1
+            while i <= m:
+                if (n - i) % (m+1) == 0:
+                    return i
+                i = i + 1
+            
 def usuario_escolhe_jogada(n, m):
-    global limitepecas
-    while m > n-1 or m == 0 or m < limitepecas:
-        m = int(input("Oops! Jogada invalida! Tente de novo. "))
+    x = int(input("Quantas pecas voce vai tirar? "))
 
-    return m
+    while (x>m) or (x<=0) or (x>n):
+        x = int(input("Quantas pecas voce vai tirar? "))
+        
+    if x >= 1 and x <= m:
+        return x
 
 def partida():
     n = int(input("Quantas pecas? "))
     m = int(input("Limite de pecas por jogada? "))
-    global limitepecas
-    limitepecas = m
+
+    #global limitepecas
+    #limitepecas = m
 
     pecasnamesa = n
     
-    if ((m+1)%n) == 0:
+    if ((m+1)%n) == 0 or (n%(m+1)) == 0:
         print("Voce comeca!")
         QuemJoga = "usuario"
     else:
@@ -38,12 +38,14 @@ def partida():
         
     while pecasnamesa != 0:
         if QuemJoga == "computador":
-            m = 1
-            pecasnamesa = pecasnamesa - computador_escolhe_jogada(pecasnamesa, m)
+            x = computador_escolhe_jogada(pecasnamesa, m)
+            print("O computador tirou "+str(x)+" peca(s)")
+            pecasnamesa = pecasnamesa - x
             QuemJoga = "usuario"
         else:
-            m = int(input("Quantas pecas voce vai tirar? "))
-            pecasnamesa = pecasnamesa - usuario_escolhe_jogada(pecasnamesa, m)
+            x = usuario_escolhe_jogada(pecasnamesa, m)
+            print("Voce tirou "+str(x)+" peca(s)")
+            pecasnamesa = pecasnamesa - x
             QuemJoga = "computador"
             
         print("Resta(m) "+str(pecasnamesa)+" peca(s) na mesa")
