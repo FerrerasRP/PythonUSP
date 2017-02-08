@@ -24,9 +24,6 @@ def partida():
     n = int(input("Quantas pecas? "))
     m = int(input("Limite de pecas por jogada? "))
 
-    #global limitepecas
-    #limitepecas = m
-
     pecasnamesa = n
     
     if ((m+1)%n) == 0 or (n%(m+1)) == 0:
